@@ -1,4 +1,5 @@
 from selenium import webdriver
+# from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 
@@ -14,23 +15,28 @@ while readingBool:
     for x in mangaDictionary:
         print(x)  
 
-    print("\nWhat series do you want to read?")
+    print("\nWhat series do you want to read? (Must match names printed above)")
     seriesRead = input("Series: ")
 
     #compare case sensitive strings. 
     # s1.lower() == s3.lower()
     #https://www.edureka.co/blog/hash-tables-and-hashmaps-in-python/
     #prints out the keys
-    print("Key Value is =:" + mangaDictionary.get(seriesRead)+ "\n")
+    print("Key Value is =:" + mangaDictionary.get(seriesRead)+ "\n") 
     mangaLink = mangaDictionary.get(seriesRead)
-    browser = webdriver.Chrome("/Users/naveenbandarage/Downloads/chromedriver")
-
+    browser = webdriver.Chrome(executable_path=r'/Users/naveenbandarage/Desktop/OtherProjects/PythonProjects/SeleniumViz/chromedriver')
+    # browser = webdriver.Chrome("/Users/naveenbandarage/Downloads/chromedriver")
+    # browser = webdriver.Chrome(ChromeDriverManager().install())
 
     #This method works to get 
     browser.get("https://www.viz.com/")
-
-    elem = browser.find_element_by_xpath('//*[@id="curtain"]/header/div/nav/ul[1]/li[3]/a')
-    # print(elem.text)
+    # print(//*[@id="section0"]/div/div[2]/div[5]/a/div[2]/text()
+# //*[@id="section0"]/div/div[2]/div[3]/a/div[2]
+    # elem = browser.find_element_by_xpath('//*[@id="curtain"]/header/div/nav/ul[1]/li[3]/a')
+    elem = browser.find_elements_by_xpath('//*[@id="section0"]/div/div[2]/div[3]')
+    #testing to see if I can get the one piece text
+    print("Works")
+    print(elem.text)
     elem.click()
     # wait = WebDriverWait(manga, 10)
     browser.implicitly_wait(20)
