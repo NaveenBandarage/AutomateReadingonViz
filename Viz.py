@@ -35,12 +35,13 @@ while booleanA:
         print(x)
     boolean = True
     while boolean:
-        print("\nWhat series do you want to read? (Must match names printed above)")
+        print(
+            "\nWhat series do you want to read? (Must match names printed above)"
+        )
         seriesRead = input("Series: ")
 
         closestWord = difflib.get_close_matches(
-            seriesRead, list(mangaNameDictionary.keys()), 1, 0.4
-        )
+            seriesRead, list(mangaNameDictionary.keys()), 1, 0.4)
         if len(closestWord) != 0:
             print("The series is: " + closestWord[0])
             boolean = False
@@ -51,7 +52,8 @@ while booleanA:
     print("Key Value is =:" + mangaNameDictionary.get(closestWord[0]) + "\n")
     mangaName = mangaNameDictionary.get(closestWord[0])
     browser = webdriver.Chrome(
-        executable_path=r"/Users/naveenbandarage/Desktop/OtherProjects/PythonProjects/SeleniumViz/chromedriver"
+        executable_path=
+        r"/Users/naveenbandarage/Desktop/OtherProjects/PythonProjects/SeleniumViz/chromedriver"
     )
 
     # This method works to get
@@ -71,7 +73,8 @@ while booleanA:
     )
     elem.click()
 
-    fullScreen = browser.find_element_by_xpath('//*[@id="reader_tools"]/a[6]/i')
+    fullScreen = browser.find_element_by_xpath(
+        '//*[@id="reader_tools"]/a[6]/i')
 
     browser.implicitly_wait(20)
 
